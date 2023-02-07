@@ -26,6 +26,7 @@ export default function Header() {
       <Modal title="Login">
         <LoginForm />
       </Modal>
+
       {/* <Trynew open={login} setLogin={setLogin} /> */}
     </>
   );

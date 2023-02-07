@@ -15,7 +15,7 @@ export default function BookingPage() {
         />
         {/* header details */}
         <div className="">
-          <i class="fa-regular fa-calendar-days" />
+          <i className="fa-regular fa-calendar-days" />
           <h1 className="text-2xl font-bold">Concert Nameeeeeeeeeeeeeee</h1>
           <br />
           <div className="flex">

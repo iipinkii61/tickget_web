@@ -3,6 +3,7 @@ import BookingPage from "../pages/BookingPage";
 import HomePage from "../pages/HomePage";
 import ListPage from "../pages/ListPage";
 import OrderSummaryPage from "../pages/OrderSummaryPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/sum",
     element: <OrderSummaryPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 

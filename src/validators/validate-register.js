@@ -9,7 +9,7 @@ const registerSchema = Joi.object({
   }),
   emailOrMobile: Joi.alternatives()
     .try(
-      Joi.string().email({ tlds: false }),
+      Joi.string().email({ tlds: false }), // ไม่ต้อง validate tlds
       Joi.string().pattern(/^[0-9]{10}$/)
     )
     .messages({
@@ -52,8 +52,11 @@ const registerSchema = Joi.object({
 const validateRegister = (input) => {
   const { error } = registerSchema.validate(input, {
     abortEarly: false,
+    stripUnknown: true,
+    // ให้ validate ทุกตัวจนจบ, เอา unknown key ออกไป
   });
 
+  // แปลงค่า error ให้อยู่ในรูปแบบที่เอาไปใช้ได้ง่าย []
   if (error) {
     const result = error.details.reduce((acc, el) => {
       acc[el.path[0]] = el.message;

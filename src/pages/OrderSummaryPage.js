@@ -10,48 +10,48 @@ export default function OrderSummaryPage() {
       </div>
       <div className="flex justify-around gap-12 m-12 mt-[-90px]">
         {/* left box */}
-        <div class="block w-2/3 p-8 px-10 bg-white border border-gray-200 rounded-lg shadow">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-purpling">
+        <div className="block w-2/3 p-8 px-10 bg-white border border-gray-200 rounded-lg shadow">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-purpling">
             Payment
           </h5>
           <div className="flex items-center justify-evenly gap-10">
             <img src={qr} className="w-24" alt="" />
-            <p class="ml-[-30px] font-normal text-gray-700 dark:text-gray-400">
+            <p className="ml-[-30px] font-normal text-gray-700 dark:text-gray-400">
               บริษัท รวยไม่ จำกัด <br /> เลขที่ 000-1111111-222 <br />{" "}
               ธนาคารโค้ดแคมป์ สาขาบรรทัดทอง
             </p>
           </div>
-          <hr class="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
+          <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
 
           {/* order detail */}
-          <h5 class="mb-4 text-2xl font-bold tracking-tight text-purpling">
+          <h5 className="mb-4 text-2xl font-bold tracking-tight text-purpling">
             Order detail
           </h5>
           <div className="my-2 flex items-center gap-5">
-            <p class="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
+            <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
               Zone :
             </p>
             <p className="text-gray-700">;lsdkf;ldsf</p>
           </div>
           <div className="flex items-center gap-5">
-            <p class="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
+            <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
               Zone :
             </p>
             <p className="text-gray-700">;lsdkf;ldsf</p>
           </div>
-          <hr class="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
+          <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
           {/* end order detail */}
-          <h5 class="mb-4 text-2xl font-bold tracking-tight text-purpling">
+          <h5 className="mb-4 text-2xl font-bold tracking-tight text-purpling">
             Buyer detail
           </h5>
           <div className="my-2 flex items-center gap-5">
-            <p class="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
+            <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
               Zone :
             </p>
             <p className="text-gray-700">;lsdkf;ldsf</p>
           </div>
           <div className="flex items-center gap-5">
-            <p class="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
+            <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
               Zone :
             </p>
             <p className="text-gray-700">;lsdkf;ldsf</p>
@@ -65,7 +65,7 @@ export default function OrderSummaryPage() {
             <p>Type</p>
             <p>Price</p>
           </div>
-          <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
+          <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="flex justify-between text-gray-900 ">
             <div className="flex gap-3">
               <p>1 x</p>
@@ -73,7 +73,7 @@ export default function OrderSummaryPage() {
             </div>
             <p>200.-</p>
           </div>
-          <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
+          <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="flex justify-between text-gray-900 ">
             <p>Shipping fee</p>
             <p>0</p>
@@ -94,13 +94,13 @@ export default function OrderSummaryPage() {
       <div className="flex justify-center gap-6">
         <button
           type="button"
-          class="inline-block w-28 px-6 py-2.5 bg-danger text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+          className="inline-block w-28 px-6 py-2.5 bg-danger text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
         >
           Back
         </button>
         <button
           type="button"
-          class="inline-block w-28 px-6 py-2.5 bg-lavender text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+          className="inline-block w-28 px-6 py-2.5 bg-lavender text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
         >
           Confirm
         </button>

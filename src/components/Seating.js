@@ -3,13 +3,13 @@ export default function Seating() {
   const rowArr = ["A", "B", "C", "D", "E", "F", "G"];
   return (
     <div className="flex justify-center ">
-      <div class="flex">
+      <div className="flex">
         {/* row label */}
         <div className="py-20">
-          <table class="min-w-full text-center">
+          <table className="min-w-full text-center">
             {rowArr.map((el) => (
               <tr>
-                <td class="text-sm px-4 py-2 whitespace-nowrap border-r">
+                <td className="text-sm px-4 py-2 whitespace-nowrap border-r">
                   {el}
                 </td>
               </tr>
@@ -19,15 +19,15 @@ export default function Seating() {
         {/* end row label */}
 
         {/* seating */}
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-20 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-x-auto">
-              <table class="min-w-full border text-center">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-20 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-x-auto">
+              <table className="min-w-full border text-center">
                 <tbody>
                   {rowArr.map((el) => (
-                    <tr class="bg-orange-300 border-b">
+                    <tr className="bg-orange-300 border-b">
                       {seatArr.map((el) => (
-                        <td class="text-sm text-gray-900 px-4 py-2 whitespace-nowrap border-r">
+                        <td className="text-sm text-gray-900 px-4 py-2 whitespace-nowrap border-r">
                           {el}
                         </td>
                       ))}
