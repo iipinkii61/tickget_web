@@ -4,7 +4,6 @@ import PosterItem from "../components/PosterItem";
 export default function HomePage() {
   return (
     <>
-      {/* <LoginModal /> */}
       <MyCarousel />
       <br />
       <h1 className="font-semibold text-2xl mx-16 mt-6">Upcoming Events</h1>

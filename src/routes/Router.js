@@ -4,6 +4,9 @@ import HomePage from "../pages/HomePage";
 import ListPage from "../pages/ListPage";
 import OrderSummaryPage from "../pages/OrderSummaryPage";
 import RegisterPage from "../pages/RegisterPage";
+import ProtectedRoute from "../components/ProtectedRoute";
+import AuthLayout from "../layout/AuthLayout";
+import RedirectIfAuthenticate from "../components/RedirectIfAuthenticate";
 
 const router = createBrowserRouter([
   {
@@ -11,20 +14,29 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
+    path: "/register",
+    element: <RegisterPage />,
+  },
+  {
     path: "/booking",
     element: <BookingPage />,
   },
   {
-    path: "/lists",
-    element: <ListPage />,
-  },
-  {
-    path: "/sum",
-    element: <OrderSummaryPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
+    element: (
+      <ProtectedRoute>
+        <AuthLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "/sum",
+        element: <OrderSummaryPage />,
+      },
+      {
+        path: "/lists",
+        element: <ListPage />,
+      },
+    ],
   },
 ]);
 

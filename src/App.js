@@ -10,7 +10,7 @@ function App() {
     <>
       <Header />
       <Router />
-      <ToastContainer autoClose="1000" theme="light" position="top-center" />
+      <ToastContainer autoClose="2000" theme="light" position="top-center" />
     </>
   );
 }
