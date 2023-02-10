@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path: "/booking",
+    path: "/booking/:eventId",
     element: <BookingPage />,
   },
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <OrderSummaryPage />,
       },
       {
-        path: "/lists",
+        path: "/lists/:userId",
         element: <ListPage />,
       },
     ],

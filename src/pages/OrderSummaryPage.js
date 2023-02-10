@@ -1,4 +1,3 @@
-import BannerColor from "../components/BannerColor";
 import qr from "../assets/images/qr.png";
 
 export default function OrderSummaryPage() {
@@ -104,6 +103,7 @@ export default function OrderSummaryPage() {
         >
           Confirm
         </button>
+        {/* ปุ่ม confirm = createBooking + ไปหน้า lists */}
       </div>
       {/* end button */}
     </div>

@@ -1,6 +1,19 @@
 import poster from "../assets/images/poster.jpeg";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import * as bookingApi from "../apis/booking-api";
 
 export default function BookingList() {
+  const [events, setEvents] = useState([]);
+  const { userId } = useParams();
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const res = await bookingApi.getBookingById(userId);
+      setEvents(res.data.events);
+    };
+    fetchEvent();
+  }, []);
   return (
     <>
       <div className="flex items-center justify-evenly my-10 bg-transparent md:flex-row ">
