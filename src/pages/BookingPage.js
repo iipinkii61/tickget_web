@@ -1,12 +1,24 @@
-import pung from "../assets/images/pung.png";
-import TextBox from "../components/TextBox";
-import Seating from "../components/Seating";
 import BookingBanner from "../components/BookingBanner";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import * as eventApi from "../apis/event-api";
+import SeatSelector from "../components/SeatSelector";
 
 export default function BookingPage() {
+  const [events, setEvents] = useState([]);
+  const { eventId } = useParams();
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const res = await eventApi.getEventById(eventId);
+      setEvents(res.data.events);
+    };
+    fetchEvent();
+  }, [eventId]);
+
   return (
     <div>
-      <BookingBanner />
+      <BookingBanner events={events} />
 
       {/* select date(optional) */}
       {/* <div className="flex justify-center">
@@ -39,56 +51,7 @@ export default function BookingPage() {
       </div> */}
       {/* end select date */}
 
-      {/* seating */}
-      <div className="flex justify-center">
-        <img src={pung} useMap="#image-map" />
-        {/* image width 500px */}
-        <map name="image-map">
-          <area
-            alt="se"
-            title="se"
-            href="#seating"
-            coords="150,302,114,243"
-            shape="rect"
-          />
-          <area
-            alt="p"
-            title="p"
-            href="#seating"
-            coords="401,291,484,314,467,358,416,333"
-            shape="poly"
-          />
-        </map>
-      </div>
-      <div id="seating">
-        <Seating />
-      </div>
-      <div>
-        {/* end seating */}
-
-        <h1 className="text-center font-semibold text-bluer text-2xl my-6">
-          Ticket Information
-        </h1>
-        <div className="flex justify-center">
-          <TextBox />
-        </div>
-      </div>
-      {/* button */}
-      <div className="flex justify-center gap-6 my-8">
-        <button
-          type="button"
-          className="inline-block w-28 px-6 py-2.5 bg-gray-400 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          className="inline-block w-28 px-6 py-2.5 bg-lavender text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          Confirm
-        </button>
-      </div>
-      {/* end button */}
+      <SeatSelector />
     </div>
   );
 }

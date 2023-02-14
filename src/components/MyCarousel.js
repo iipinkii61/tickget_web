@@ -1,7 +1,8 @@
 import banner1 from "../assets/images/banner.jpeg";
 import banner2 from "../assets/images/banner2.jpeg";
+import banner3 from "../assets/images/banner3.jpeg";
 
-export default function MyCarousel() {
+export default function MyCarousel({ events }) {
   return (
     <div
       id="carouselExampleCrossfade"
@@ -38,11 +39,7 @@ export default function MyCarousel() {
           <img src={banner2} className="block w-full" alt="Camera" />
         </div>
         <div className="carousel-item float-left w-full">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-            className="block w-full"
-            alt="Exotic Fruits"
-          />
+          <img src={banner3} className="block w-full" alt="Exotic Fruits" />
         </div>
       </div>
       <button

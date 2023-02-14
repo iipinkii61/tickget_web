@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import * as eventApi from "../apis/event-api";
-
-export default function BookingBanner() {
-  const [events, setEvents] = useState([]);
-  const { eventId } = useParams();
-
-  useEffect(() => {
-    const fetchEvent = async () => {
-      const res = await eventApi.getEventById(eventId);
-      setEvents(res.data.events);
-    };
-    fetchEvent();
-  }, []);
-  // console.log(events);
+export default function BookingBanner({ events }) {
   return (
-    <div className="flex items-center bg-slate-500 h-80">
+    <div className="flex items-center bg-white/20 h-80">
+      <img
+        className="absolute object-cover w-full h-80 blur-2xl"
+        src={events.picture}
+      />
+
       <img
         className="mx-24 h-64 drop-shadow-xl"
         src={events.picture}
         alt="poster"
       />
-      <div className="">
+      <div className="z-10">
         <h1 className="text-2xl font-bold">{events.name}</h1>
         <br />
         <div className="flex">

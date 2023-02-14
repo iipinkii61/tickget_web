@@ -6,7 +6,7 @@ import OrderSummaryPage from "../pages/OrderSummaryPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import AuthLayout from "../layout/AuthLayout";
-import RedirectIfAuthenticate from "../components/RedirectIfAuthenticate";
+// import RedirectIfAuthenticate from "../components/RedirectIfAuthenticate";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path: "/booking/:eventId",
+    path: "/booking/:eventId/:venueId",
     element: <BookingPage />,
   },
   {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/sum",
+        path: "/sum/:bookingId",
         element: <OrderSummaryPage />,
       },
       {
-        path: "/lists/:userId",
+        path: "/lists",
         element: <ListPage />,
       },
     ],

@@ -2,10 +2,11 @@ import axios from "../config/axios";
 
 export const getBookingById = (userId) => axios.get(`/booking/${userId}`);
 export const createBooking = (userId, eventId, zoneId, input) =>
-  axios.post("/booking" + userId + eventId + zoneId, input);
-export const getBooking = (bookingId) => axios.get("/booking" + bookingId);
+  axios.post(`/booking/${userId}/${eventId}/${zoneId}`, input);
+export const getBooking = (bookingId) =>
+  axios.get("/booking/getOne/" + bookingId);
 export const deleteBooking = (bookingId) =>
-  axios.delete("/booking" + bookingId);
+  axios.delete("/booking/" + bookingId);
 
 // router.post("/:userId/:eventId/:zoneId", bookingController.createBooking);
 // router.get("/:userId", bookingController.getAllBookingById);

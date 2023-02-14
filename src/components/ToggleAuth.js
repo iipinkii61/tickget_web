@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 export default function ToggleAuth() {
   const { logout } = useAuth();
-  const { userId } = useParams();
 
   const handleClickSignOut = async () => {
     await logout();
@@ -12,7 +11,7 @@ export default function ToggleAuth() {
       <ul className="py-2 text-sm " aria-labelledby="dropdownDefaultButton">
         <li>
           <a
-            href={`/lists/${userId}`}
+            href="/lists"
             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Order history

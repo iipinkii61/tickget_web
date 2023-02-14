@@ -1,6 +1,38 @@
 import qr from "../assets/images/qr.png";
+import useAuth from "../hooks/useAuth";
+import { useEffect, useState } from "react";
+import * as bookingApi from "../apis/booking-api";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function OrderSummaryPage() {
+  const [booking, setBooking] = useState({
+    Zones: [{ zoneName: "", seatNumber: "", price: 0 }],
+  });
+  console.log(booking);
+
+  const {
+    authenticatedUser: { firstName, lastName, idCardNumber },
+  } = useAuth();
+  const { bookingId } = useParams();
+
+  useEffect(() => {
+    const fetchBooking = async () => {
+      const res = await bookingApi.getBooking(bookingId);
+      setBooking(res.data.booking);
+    };
+    fetchBooking();
+  }, [bookingId]);
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure to delete this booking?")) {
+      await bookingApi.deleteBooking(bookingId);
+      toast.success("Success delete !");
+    } else {
+      console.log("user has cancelled delete");
+    }
+  };
+
   return (
     <div>
       <div className=" flex flex-col items-center justify-center bg-slate-500 h-80">
@@ -30,13 +62,19 @@ export default function OrderSummaryPage() {
             <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
               Zone :
             </p>
-            <p className="text-gray-700">;lsdkf;ldsf</p>
+            <p className="text-gray-700">{booking.Zones[0].zoneName}</p>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="my-2 flex items-center gap-5">
             <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
-              Zone :
+              Seat No. :
             </p>
-            <p className="text-gray-700">;lsdkf;ldsf</p>
+            <p className="text-gray-700">{booking.Zones[0].seatNumber}</p>
+          </div>
+          <div className="my-2 flex items-center gap-5">
+            <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
+              Quantity :
+            </p>
+            <p className="text-gray-700">1</p>
           </div>
           <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
           {/* end order detail */}
@@ -45,15 +83,17 @@ export default function OrderSummaryPage() {
           </h5>
           <div className="my-2 flex items-center gap-5">
             <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
-              Zone :
+              ชื่อ :
             </p>
-            <p className="text-gray-700">;lsdkf;ldsf</p>
+            <p className="text-gray-700">
+              {firstName} {lastName}
+            </p>
           </div>
           <div className="flex items-center gap-5">
             <p className="ml-12 font-semibold text-lg text-gray-700 dark:text-gray-400">
-              Zone :
+              เลขที่บัตรประชาชน :
             </p>
-            <p className="text-gray-700">;lsdkf;ldsf</p>
+            <p className="text-gray-700">{idCardNumber}</p>
           </div>
         </div>
         {/* end left box */}
@@ -68,9 +108,9 @@ export default function OrderSummaryPage() {
           <div className="flex justify-between text-gray-900 ">
             <div className="flex gap-3">
               <p>1 x</p>
-              <p className="text-purpling">Zen</p>
+              <p className="text-purpling">{booking.Zones[0].zoneName}</p>
             </div>
-            <p>200.-</p>
+            <p>{booking.Zones[0].price}.-</p>
           </div>
           <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="flex justify-between text-gray-900 ">
@@ -83,7 +123,7 @@ export default function OrderSummaryPage() {
           </div>
           <div className="flex my-2 justify-between text-purpling font-semibold ">
             <p>Total price</p>
-            <p>200.-</p>
+            <p>{booking.quantity * booking.Zones[0].price}.-</p>
           </div>
         </div>
         {/* end right box */}
@@ -93,16 +133,19 @@ export default function OrderSummaryPage() {
       <div className="flex justify-center gap-6">
         <button
           type="button"
-          className="inline-block w-28 px-6 py-2.5 bg-danger text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+          className="inline-block w-28 px-6 py-2.5 bg-danger text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out"
+          onClick={handleDelete}
         >
-          Back
+          Delete
         </button>
-        <button
-          type="button"
-          className="inline-block w-28 px-6 py-2.5 bg-lavender text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          Confirm
-        </button>
+        <a href="/lists">
+          <button
+            type="button"
+            className="inline-block w-28 px-6 py-2.5 bg-lavender text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Confirm
+          </button>
+        </a>
         {/* ปุ่ม confirm = createBooking + ไปหน้า lists */}
       </div>
       {/* end button */}

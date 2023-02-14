@@ -28,7 +28,6 @@ export default function RegisterPage() {
         console.log(result);
       } else {
         setError({});
-        // startLoading();
         await authApi.register(input); // axios post
         setInput(initialInput);
         toast.success("success register. please login to continue");
@@ -36,10 +35,6 @@ export default function RegisterPage() {
     } catch (err) {
       toast.error(err.response?.data.message);
     }
-
-    // } finally {
-    //   stopLoading();
-    // }
   };
 
   return (
@@ -49,7 +44,6 @@ export default function RegisterPage() {
           <h1 className="text-black mb-6 font-semibold text-2xl">
             Create new account .
           </h1>
-          <button onClick={() => toast("testkaaaaa")}>sdfsdf</button>
         </div>
         <form onSubmit={handleSubmitForm}>
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -163,9 +157,11 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex justify-center gap-6">
-            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Back
-            </button>
+            {/* <a href="/">
+              <button className="text-white bg-zinc-400 hover:bg-zinc-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Back
+              </button>
+            </a> */}
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
