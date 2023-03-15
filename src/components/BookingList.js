@@ -22,6 +22,7 @@ export default function BookingList() {
   const handleDelete = async (bookingId) => {
     if (window.confirm("Are you sure to delete this booking?")) {
       await bookingApi.deleteBooking(bookingId);
+      setBooking(booking.filter((el) => el.id !== +bookingId));
       toast.success("Success delete!");
       navigate("/lists");
     } else {

@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
 import * as zoneApi from "../apis/zone-api";
 import * as bookingApi from "../apis/booking-api";
-import useAuth from "../hooks/useAuth";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function TextBox({ seatId }) {
   const [seatDetail, setSeatDetail] = useState([]);
-  const {
-    authenticatedUser: { id },
-  } = useAuth();
+
   const { eventId } = useParams();
   const navigate = useNavigate();
   // console.log(seatDetail);
@@ -23,7 +20,7 @@ export default function TextBox({ seatId }) {
   }, [seatId]);
 
   const handleSubmit = async () => {
-    const res = await bookingApi.createBooking(id, eventId, seatId, {
+    const res = await bookingApi.createBooking(eventId, seatId, {
       totalPrice: seatDetail.price,
     });
 

@@ -1,19 +1,21 @@
 import { useState } from "react";
 import TextBox from "../components/TextBox";
+import useAuth from "../hooks/useAuth";
 
 export default function Seating({ zone }) {
   // const seatArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const rowArr = ["A", "B", "C", "D", "E", "F", "G"];
+  const { authenticatedUser } = useAuth();
 
-  console.log(zone);
-  const initialZone = zone.reduce((acc, cur) => {
-    acc[cur.id] = false;
-    return acc;
-  }, {});
-  console.log(initialZone);
+  // console.log(zone);
+  // const initialZone = zone.reduce((acc, cur) => {
+  //   acc[cur.id] = false;
+  //   return acc;
+  // }, {});
+  // console.log(initialZone);
 
   const [seatId, setSeatId] = useState([]);
-  const [check, setCheck] = useState(initialZone);
+  // const [check, setCheck] = useState(initialZone);
 
   // const [check, setCheck] = useState({
   //   A: [],
@@ -42,13 +44,15 @@ export default function Seating({ zone }) {
           <div className="py-20">
             <table className="min-w-full text-center">
               <tbody>
-                {rowArr.map((el) => (
-                  <tr>
-                    <td className="text-sm px-4 py-2 whitespace-nowrap border-r">
-                      {el}
-                    </td>
-                  </tr>
-                ))}
+                {authenticatedUser
+                  ? rowArr.map((el) => (
+                      <tr>
+                        <td className="text-sm px-4 py-2 whitespace-nowrap border-r">
+                          {el}
+                        </td>
+                      </tr>
+                    ))
+                  : ""}
               </tbody>
             </table>
           </div>
@@ -61,23 +65,24 @@ export default function Seating({ zone }) {
                 <table className="min-w-full border text-center">
                   <tbody>
                     <tr className="bg-orange-300 border-b">
-                      {zone.map((s) => (
-                        <td className="text-sm text-gray-900 px-4 py-2 whitespace-nowrap border-r">
-                          {!s.bookingId ? (
-                            <button
-                              value={s.id}
-                              onClick={(e) => {
-                                setSeatId(e.target.value);
-                                check[e.target.value] = true;
-                              }}
-                            >
-                              {s.seatNumber}
-                            </button>
-                          ) : (
-                            <i className="fa-solid fa-xmark text-lg text-red-700 bg-white px-1"></i>
-                          )}
-                        </td>
-                      ))}
+                      {authenticatedUser
+                        ? zone.map((s) => (
+                            <td className="text-sm text-gray-900 px-4 py-2 whitespace-nowrap border-r">
+                              {!s.bookingId ? (
+                                <button
+                                  value={s.id}
+                                  onClick={(e) => {
+                                    setSeatId(e.target.value);
+                                  }}
+                                >
+                                  {s.seatNumber}
+                                </button>
+                              ) : (
+                                <i className="fa-solid fa-xmark text-lg text-red-700 bg-white px-1"></i>
+                              )}
+                            </td>
+                          ))
+                        : ""}
                     </tr>
                   </tbody>
                 </table>
@@ -128,12 +133,18 @@ export default function Seating({ zone }) {
         </div>
 
         <div>
-          <h1 className="text-center font-semibold text-bluer text-2xl my-6">
-            Ticket Information
-          </h1>
-          <div className="flex justify-center">
-            <TextBox seatId={seatId} />
-          </div>
+          {seatId.length >= 1 ? (
+            <>
+              <h1 className="text-center font-semibold text-bluer text-2xl my-6">
+                Ticket Information
+              </h1>
+              <div className="flex justify-center">
+                <TextBox seatId={seatId} />
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

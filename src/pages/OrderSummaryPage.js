@@ -2,14 +2,15 @@ import qr from "../assets/images/qr.png";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import * as bookingApi from "../apis/booking-api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function OrderSummaryPage() {
   const [booking, setBooking] = useState({
     Zones: [{ zoneName: "", seatNumber: "", price: 0 }],
   });
-  console.log(booking);
+  // console.log(booking);
+  const navigate = useNavigate();
 
   const {
     authenticatedUser: { firstName, lastName, idCardNumber },
@@ -28,6 +29,7 @@ export default function OrderSummaryPage() {
     if (window.confirm("Are you sure to delete this booking?")) {
       await bookingApi.deleteBooking(bookingId);
       toast.success("Success delete !");
+      navigate("/");
     } else {
       console.log("user has cancelled delete");
     }
